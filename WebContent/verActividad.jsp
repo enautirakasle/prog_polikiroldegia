@@ -53,8 +53,19 @@
 		<br>
 		<br>
 		<div class="row">
-			<div class="col text-center font-weight-bold"><button type="button" class="btn btn-primary">Editar</button></div>
-			<div class="col text-center font-weight-bold"><button type="button" class="btn btn-danger">Borrar</button></div>
+			<div class="col text-center font-weight-bold">
+				<a class="btn btn-primary" href="ModificarActividad?id=<%=actividad.getId()%>">Modificar</a>
+			</div>
+			<div class="col text-center font-weight-bold">
+				<a class="btn btn-danger" href="ElimnarActividad?id=<%=actividad.getId()%>">Eliminar</a>
+			</div>
+			
+		</div>
+		<div class="row mt-3">
+			<div class="col">
+				<a href="VerActividades">Ver actividades</a>
+			</div>
+			
 		</div>
 		<br>
 	</div>
