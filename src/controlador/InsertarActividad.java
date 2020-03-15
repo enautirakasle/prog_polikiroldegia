@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.bean.Actividad;
+import modelo.dao.ModeloActividad;
+
 /**
  * Servlet implementation class InsertarActividad
  */
@@ -54,16 +57,27 @@ public class InsertarActividad extends HttpServlet {
 		int maxParticipantes = Integer.parseInt(request.getParameter("max_participantes"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		
-		System.out.println(nombre);
-		System.out.println(fechaInicio);
-		System.out.println(diasSemana);
-		System.out.println(horas);
-		System.out.println(maxParticipantes);
-		System.out.println(precio);
+//		System.out.println(nombre);
+//		System.out.println(fechaInicio);
+//		System.out.println(diasSemana);
+//		System.out.println(horas);
+//		System.out.println(maxParticipantes);
+//		System.out.println(precio);
+		
 		//sortu acgividade objektu bat
+		Actividad actividad = new Actividad();
 		//jasotako datuekin setak egin
+		actividad.setNombre(nombre);
+		actividad.setFecha_inicio(fechaInicio);
+		actividad.setDias(diasSemana);
+		actividad.setHoras(horas);
+		actividad.setMaxParticipantes(maxParticipantes);
+		actividad.setPrecio(precio);
+		
 		//modeloa sortu
+		ModeloActividad mActividad = new ModeloActividad();
 		//inserta egin
+		mActividad.insert(actividad);
 		
 		//VerActividades kontrolatzaileari deitu
 		response.sendRedirect("VerActividades");

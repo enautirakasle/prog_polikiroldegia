@@ -20,7 +20,9 @@
   </head>
   <body>
   <div class="container mt-3">
-  
+  	<div class="row">
+  		<a class="btn btn-primary" href="CrearActividad">Crear actividad</a>
+  	</div>
 	  <h1>Actividades</h1>
 	
 		<table class="table table-striped">
