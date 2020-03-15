@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="max_participantes">MÃ¡ximo numero de participantes</label>
+				<label for="max_participantes">Máximo numero de participantes</label>
 				<input type="text" class="form-control" id="max_participantes" name="max_participantes">
 			</div>
 
