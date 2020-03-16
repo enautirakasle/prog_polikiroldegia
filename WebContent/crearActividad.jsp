@@ -28,7 +28,7 @@
 
 			<div class="form-group">
 				<label for="fecha_inicio">Fecha inicio</label>
-				<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio">
+				<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="yyyy-MM-dd">
 			</div>
 
 			<div class="form-group">

@@ -47,7 +47,7 @@ public class InsertarActividad extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String diasSemana = request.getParameter("dias_semana");
 		String fechaInicioParametro = request.getParameter("fecha_inicio");
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			fechaInicio = formato.parse(request.getParameter("fecha_inicio"));
 		} catch (ParseException e) {
