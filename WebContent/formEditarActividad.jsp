@@ -59,7 +59,7 @@
 				<input type="text" class="form-control" id="precio" name="precio" value="<%=actividad.getPrecio()%>">
 			</div>
 			
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">Guardar cambios</button>
 		</form>
 
 	</div>
