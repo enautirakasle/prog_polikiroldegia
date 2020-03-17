@@ -54,7 +54,7 @@
 		<br>
 		<div class="row">
 			<div class="col text-center font-weight-bold">
-				<a class="btn btn-primary" href="EditarActividad?id=<%=actividad.getId()%>">Editar</a>
+				<a class="btn btn-secondary" href="EditarActividad?id=<%=actividad.getId()%>">Editar</a>
 			</div>
 			<div class="col text-center font-weight-bold">
 				<a class="btn btn-danger" href="ElimnarActividad?id=<%=actividad.getId()%>">Eliminar</a>
