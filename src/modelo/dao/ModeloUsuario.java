@@ -290,7 +290,7 @@ public class ModeloUsuario extends Conector{
 			
 			pst.setString(1, usuario.getNombreApellido());
 			pst.setString(2, usuario.getDni());
-			pst.setString(3, usuario.getNombreApellido());
+			pst.setString(3, usuario.getCodigo());
 			pst.setInt(4, usuario.getId());
 			
 			pst.executeUpdate();
