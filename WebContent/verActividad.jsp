@@ -58,7 +58,7 @@
 				<a class="btn btn-danger" href="ElimnarActividad?id=${actividad.getId()}">Eliminar</a>
 			</div>
 			<div class="col text-center font-weight-bold">
-				<a class="btn btn-success" href="InscribirUsuarios?id=${actividad.getId()}">Inscribir</a>
+				<a class="btn btn-success" href="IscribirUsuarios?id=${actividad.getId()}">Inscribir</a>
 			</div>
 				    
 		</div>
