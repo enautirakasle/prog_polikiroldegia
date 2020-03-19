@@ -41,7 +41,7 @@
 	      	<a class="btn btn-primary" href="VerActividad?id=${actividad.getId()}">Ver</a>
 	      	<a class="btn btn-secondary" href="EditarActividad?id=${actividad.getId()}">Editar</a>
 	      	<a class="btn btn-danger" href="EliminarActividad?id=${actividad.getId()}">Eliminar</a>
-	      
+	      	<a class="btn btn-success" href="InscribirUsuarios?id=${actividad.getId()}">Inscribir</a>	      
 	      </td>
 	    </tr>
 	   
