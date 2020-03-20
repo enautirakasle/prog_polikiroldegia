@@ -19,7 +19,7 @@
 <body>
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
   <h1 class="display-4">Polikiroldegi kudeatzailea</h1>
-  <p class="lead">Alikazio honen bitartez polikiroldegiko erabiltzaile, jarduera eta izen emateak kudeatu ahalko dituzu.</p>
+  <p class="lead">Aplikazio honen bitartez polikiroldegiko erabiltzaile, jarduera eta izen emateak kudeatu ahalko dituzu.</p>
 </div>
 	<div class="container mt-4">
 		<div class="card-deck mb-3 text-center">
