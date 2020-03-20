@@ -42,8 +42,8 @@ public class InscribirUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idActividad = Integer.parseInt(request.getParameter("idActividad"));
-		int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+		int idActividad = Integer.parseInt(request.getParameter("idactividad"));
+		int idUsuario = Integer.parseInt(request.getParameter("idusuarios"));
 		
 		ModeloInscripcion mInscripcion = new ModeloInscripcion();
 		mInscripcion.inscribir(idUsuario, idActividad);

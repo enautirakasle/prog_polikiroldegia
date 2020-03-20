@@ -72,7 +72,8 @@
 			<div class="col">
 				<h2>Formulario de inscripcion</h2>
 				<form action="InscribirUsuario" method="POST">
-					<select name="usuarios">
+					<input type="hidden" value="${actividad.id }" name="idactividad">
+					<select name="idusuarios">
 						<option value="0"></option>
 						<c:forEach items="${usuarios}" var="usuario">
 							<option value="${usuario.id}">${usuario.nombreApellido} - ${usuario.codigo}</option>
