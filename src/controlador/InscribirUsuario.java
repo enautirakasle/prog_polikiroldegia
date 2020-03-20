@@ -34,13 +34,7 @@ public class InscribirUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idActividad = Integer.parseInt(request.getParameter("idActividad"));
-		int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 		
-		ModeloInscripcion mInscripcion = new ModeloInscripcion();
-		mInscripcion.inscribir(idUsuario, idActividad);
-		
-		response.sendRedirect("VerActividad?id="+idActividad);
 		
 	}
 
@@ -48,8 +42,13 @@ public class InscribirUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int idActividad = Integer.parseInt(request.getParameter("idActividad"));
+		int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+		
+		ModeloInscripcion mInscripcion = new ModeloInscripcion();
+		mInscripcion.inscribir(idUsuario, idActividad);
+		
+		response.sendRedirect("VerActividad?id="+idActividad);
 	}
 
 }
