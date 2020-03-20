@@ -67,6 +67,21 @@
 		</div>
 		<br>
 	</div>
+	<div class="container mt-5 rounded border border-dark">
+		<div class="row">
+			<div class="col">
+				<form action="InscribirUsuario" method="POST">
+					<select name="usuarios">
+						<option value="0"></option>
+						<c:forEach items="${usuarios}" var="usuario">
+							<option value="${usuario.id}">${usuario.nombreApellido} - ${usuario.codigo}</option>
+						</c:forEach>
+					</select>
+					<input type="submit" value="Inscribir">
+				</form>
+			</div>
+		</div>
+	</div>
 	
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
