@@ -57,14 +57,7 @@
 			<div class="col text-center font-weight-bold">
 				<a class="btn btn-danger" href="ElimnarActividad?id=${actividad.getId()}">Eliminar</a>
 			</div>
-			<div class="col text-center font-weight-bold">
-<<<<<<< HEAD
-				<a class="btn btn-success" href="IscribirUsuarios?id=${actividad.getId()}">Inscribir</a>
-=======
-				<a class="btn btn-success" href="RealizarIncripciones?id=${actividad.getId()}">Inscribir</a>
->>>>>>> branch 'master' of https://github.com/enautirakasle/prog_polikiroldegia.git
-			</div>
-				    
+			    
 		</div>
 		<div class="row mt-3">
 			<div class="col">

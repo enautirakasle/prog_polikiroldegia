@@ -1,23 +1,31 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.bean.Actividad;
+import modelo.bean.Usuario;
+import modelo.dao.ModeloActividad;
+import modelo.dao.ModeloInscripcion;
+import modelo.dao.ModeloUsuario;
+
 /**
- * Servlet implementation class InscribirUsuarios
+ * Servlet implementation class InscribirUsuario
  */
-@WebServlet("/InscribirUsuarios")
-public class InscribirUsuarios extends HttpServlet {
+@WebServlet("/InscribirUsuario")
+public class InscribirUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InscribirUsuarios() {
+    public InscribirUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +34,14 @@ public class InscribirUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int idActividad = Integer.parseInt(request.getParameter("idActividad"));
+		int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+		
+		ModeloInscripcion mInscripcion = new ModeloInscripcion();
+		mInscripcion.inscribir(idUsuario, idActividad);
+		
+		response.sendRedirect("VerActividad?id="+idActividad);
+		
 	}
 
 	/**
