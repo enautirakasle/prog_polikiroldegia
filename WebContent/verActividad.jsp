@@ -15,11 +15,11 @@
     <title>Actividad</title>
   </head>
   <body>
-    
+
 	<div class="container mt-2 rounded border border-dark">
 		<div class="row">
 			<div class="col">
-				<h1 class="text-center">${actividad.getNombre()}</h1>
+				<h1 class="text-center">${actividad.nombre}</h1>
 			</div>
 		</div>
 		<br>
@@ -82,6 +82,20 @@
 					<input type="submit" value="Inscribir">
 				</form>
 			</div>
+			<div class="col">
+				<h2>Usuarios inscritos</h2>
+				<table class="table">
+					<c:forEach items="${actividad.iscripciones }" var="inscripcion">
+					<tr>
+						<td>${inscripcion.usuario.nombreApellido } - ${inscripcion.usuario.codigo }</td>
+						<td><a class="btn btn-danger" href="EliminarInscripcion?idactividad=${actividad.id}&idusuario=${inscripcion.usuario.id}">Cancelar inscripcion</a></td>
+					</tr>
+					</c:forEach>
+				</table>
+			</div>
+			
+		
+			
 		</div>
 	</div>
 	
