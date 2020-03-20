@@ -36,14 +36,14 @@ public class VerActividad extends HttpServlet {
 		int idActividad = Integer.parseInt(request.getParameter("id"));
 		
 		ModeloActividad mActividad = new ModeloActividad();
-		Actividad actividad = mActividad.get(idActividad);
+		Actividad actividad = mActividad.getConUsuariosInscritos(idActividad);
 		
 		ModeloUsuario mUsuario = new ModeloUsuario();
 		ArrayList<Usuario> usuarios = mUsuario.selectAll();
 		
 		request.setAttribute("usuarios", usuarios);
 		request.setAttribute("actividad", actividad);
-		request.getRequestDispatcher("verActividad.jsp").forward(request, response);		
+		request.getRequestDispatcher("verActividad.jsp").forward(request, response);
 	}
 
 	/**
