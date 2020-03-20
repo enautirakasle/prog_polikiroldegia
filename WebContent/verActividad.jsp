@@ -16,7 +16,7 @@
   </head>
   <body>
     
-	<div class="container mt-5 rounded border border-dark">
+	<div class="container mt-2 rounded border border-dark">
 		<div class="row">
 			<div class="col">
 				<h1 class="text-center">${actividad.getNombre()}</h1>
@@ -67,9 +67,10 @@
 		</div>
 		<br>
 	</div>
-	<div class="container mt-5 rounded border border-dark">
+	<div class="container mt-2 pb-1 rounded border border-dark">
 		<div class="row">
 			<div class="col">
+				<h2>Formulario de inscripcion</h2>
 				<form action="InscribirUsuario" method="POST">
 					<select name="usuarios">
 						<option value="0"></option>
