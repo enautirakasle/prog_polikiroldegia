@@ -45,7 +45,7 @@ public class ModeloActividad extends Conector {
 			pst.setInt(1, idActividad);
 
 			ResultSet rs = pst.executeQuery();
-			Actividad actividad = new Actividad();
+			Actividad actividad = this.get(idActividad);
 			ArrayList<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
 
 			while (rs.next()) {
