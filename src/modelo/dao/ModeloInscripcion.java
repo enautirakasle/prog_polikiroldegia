@@ -113,6 +113,29 @@ public class ModeloInscripcion extends Conector{
 		}
 		return inscripciones;
 	}
+
+	public boolean estaInscrito(int idUsuario, int idActividad) {
+		PreparedStatement pst;
+		try {
+			pst = super.conexion.prepareStatement("select * from inscripciones where id_usuario = ? and id_actividad = ?");
+			pst.setInt(1, idUsuario);
+			pst.setInt(2, idActividad);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				//si hay alguna fila en el resultado devolver true;
+				return true;
+			}else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	
 	
 }
