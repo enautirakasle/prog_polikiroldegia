@@ -19,36 +19,54 @@
   	<div class="row">
   		<a class="btn btn-primary" href="CrearActividad">Crear actividad</a>
   	</div>
-	  <h1>Actividades</h1>
+  	<div class="row">
+
+   
+    <div class="col-4 offset-8">
+    	<form action="BuscarActividades" method="POST" class="form-inline">
+			<input type="text" name="query" class="form-control" placeholder="buscar actividades">
+			<button type="submit" class="btn btn-primary mx-2">Submit</button>
+		</form>
+	</div>
+
 	
-		<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th scope="col">nombre</th>
-	      <th scope="col">fecha inicio</th>
-	      <th scope="col">dias semana</th>
-	      <th scope="col">acciones</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  
-	  <c:forEach items="${actividades}" var="actividad">
-	    <tr>
-	      <th><a href="VerActividad?id=${actividad.getId()}">${actividad.getNombre()}</a></th>
-	      <td>${actividad.getFecha_inicio()}</td>
-	      <td>${actividad.getDias()}</td>
-	      <td>
-	      	<a class="btn btn-primary" href="VerActividad?id=${actividad.getId()}">Ver</a>
-	      	<a class="btn btn-secondary" href="EditarActividad?id=${actividad.getId()}">Editar</a>
-	      	<a class="btn btn-danger" href="EliminarActividad?id=${actividad.getId()}">Eliminar</a>
-	      
-	      </td>
-	    </tr>
-	   
-	   </c:forEach>
-	   
-	  </tbody>
-	</table>
+
+  	</div>
+  	<div class="row">
+	  	<div class="col">
+		  	<h1>Actividades</h1>
+		
+			<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">nombre</th>
+		      <th scope="col">fecha inicio</th>
+		      <th scope="col">dias semana</th>
+		      <th scope="col">acciones</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  
+		  <c:forEach items="${actividades}" var="actividad">
+		    <tr>
+		      <th><a href="VerActividad?id=${actividad.getId()}">${actividad.getNombre()}</a></th>
+		      <td>${actividad.getFecha_inicio()}</td>
+		      <td>${actividad.getDias()}</td>
+		      <td>
+		      	<a class="btn btn-primary" href="VerActividad?id=${actividad.getId()}">Ver</a>
+		      	<a class="btn btn-secondary" href="EditarActividad?id=${actividad.getId()}">Editar</a>
+		      	<a class="btn btn-danger" href="EliminarActividad?id=${actividad.getId()}">Eliminar</a>
+		      
+		      </td>
+		    </tr>
+		   
+		   </c:forEach>
+		   
+		  </tbody>
+		</table>
+	  	</div>
+  	</div>
+  	
   </div>
     
 	
