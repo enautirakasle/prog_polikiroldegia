@@ -46,21 +46,9 @@ public class VerActividad extends HttpServlet {
 
 		request.setAttribute("usuarios", usuarios);
 		request.setAttribute("actividad", actividad);
+		
 		if(msg !=null) {
-		switch (msg) {
-		case "inscripcion_ok":
-			request.setAttribute("msg", "inscripcion_ok");
-			break;
-		case "inscripcion_nok":
-			request.setAttribute("msg", "inscripcion_nok");
-			break;
-		case "cancelacion_ok":
-			request.setAttribute("msg", "cancelacion_ok");
-			break;
-
-		default:
-			break;
-		}
+			request.setAttribute("msg", msg);
 		}
 
 		request.getRequestDispatcher("verActividad.jsp").forward(request, response);
