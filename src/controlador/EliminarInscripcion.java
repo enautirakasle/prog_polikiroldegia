@@ -34,7 +34,8 @@ public class EliminarInscripcion extends HttpServlet {
 		ModeloInscripcion mInscripcion = new ModeloInscripcion();
 		mInscripcion.delete(idActividad, idUsuario);
 		
-		response.sendRedirect("VerActividad?id="+idActividad);
+		String msg = "cancelacion_ok";
+		response.sendRedirect("VerActividad?id="+idActividad+"&msg="+msg);
 	}
 
 	/**

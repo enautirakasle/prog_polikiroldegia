@@ -14,7 +14,6 @@
 
     <title>Actividad</title>
   </head>
-  <body>
 
 	<div class="container mt-2 rounded border border-dark">
 		<div class="row">
@@ -67,13 +66,45 @@
 		</div>
 		<br>
 	</div>
-	<div class="container mt-2 pb-1 rounded border border-dark">
+	
+			
+	<div class="container mt-2 py-2 rounded border border-dark">
 		<div class="row">
 			<div class="col">
+				<c:if test = "${msg == 'cancelacion_ok'}">
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					  <strong>OK!</strong> Inscripcion cancelada correctamente
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+				</c:if>
+				<c:if test = "${msg == 'inscripcion_ok'}">
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					  <strong>OK!</strong> Usuario inscrito correctamente
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+				</c:if>
+				<c:if test="${msg == 'inscripcion_nok'}">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					  <strong>ERROR!</strong> El usuario no se ha podido inscribir
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+				</c:if>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col">
+			
 				<h2>Formulario de inscripcion</h2>
 				<form action="InscribirUsuario" method="POST">
 					<input type="hidden" value="${actividad.id }" name="idactividad">
-					<select name="idusuarios">
+					<select name="idusuarios" size="${usuarios.size()/2 }">
 						<option value="0"></option>
 						<c:forEach items="${usuarios}" var="usuario">
 							<option value="${usuario.id}">${usuario.nombreApellido} - ${usuario.codigo}</option>
@@ -83,6 +114,7 @@
 				</form>
 			</div>
 			<div class="col">
+			
 				<h2>Usuarios inscritos</h2>
 				<table class="table">
 					<c:forEach items="${actividad.iscripciones }" var="inscripcion">

@@ -46,9 +46,16 @@ public class InscribirUsuario extends HttpServlet {
 		int idUsuario = Integer.parseInt(request.getParameter("idusuarios"));
 		
 		ModeloInscripcion mInscripcion = new ModeloInscripcion();
-		mInscripcion.inscribir(idUsuario, idActividad);
 		
-		response.sendRedirect("VerActividad?id="+idActividad);
+		String msg = "";
+		if(!mInscripcion.estaInscrito(idUsuario, idActividad)) {
+			mInscripcion.inscribir(idUsuario, idActividad);
+			msg="inscripcion_ok";
+		}else {
+			msg="inscripcion_nok";
+		}
+		
+		response.sendRedirect("VerActividad?id="+idActividad+"&msg="+msg);
 	}
 
 }
