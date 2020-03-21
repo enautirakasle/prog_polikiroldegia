@@ -88,7 +88,7 @@
 					</div>
 				</c:if>
 				<c:if test="${msg == 'inscripcion_nok'}">
-				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
 					  <strong>ERROR!</strong> El usuario no se ha podido inscribir
 					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					    <span aria-hidden="true">&times;</span>
