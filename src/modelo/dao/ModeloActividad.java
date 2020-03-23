@@ -36,6 +36,33 @@ public class ModeloActividad extends Conector {
 		}
 		return actividades;
 	}
+	
+	public ArrayList<Actividad> buscar(String query) {
+		ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select * from actividades where nombre like ?");
+			pst.setString(1, "%"+query+"%");
+			
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Actividad actividad = new Actividad();
+				actividad.setId(rs.getInt("id"));
+				actividad.setNombre(rs.getString("nombre"));
+				actividad.setDias(rs.getString("dias_semana"));
+				actividad.setFecha_inicio(rs.getDate("fecha_inicio"));
+				actividad.setHoras(rs.getInt("horas"));
+				actividad.setMaxParticipantes(rs.getInt("max_participantes"));
+				actividad.setPrecio(rs.getDouble("precio"));
+
+				actividades.add(actividad);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return actividades;
+	}
 
 	public Actividad getConUsuariosInscritos(int idActividad) {
 		try {
