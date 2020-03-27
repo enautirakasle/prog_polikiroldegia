@@ -23,9 +23,9 @@
 
    
     <div class="col-4 offset-8">
-    	<form action="BuscarActividades" method="POST" class="form-inline">
+				<form action="BuscarActividades" method="POST" class="form-inline">
 			<input type="text" name="query" class="form-control" placeholder="buscar actividades">
-			<button type="submit" class="btn btn-primary mx-2">Submit</button>
+			<button type="submit" class="btn btn-primary mx-2">Buscar</button>
 		</form>
 	</div>
 
