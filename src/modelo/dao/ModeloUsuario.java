@@ -36,6 +36,33 @@ public class ModeloUsuario extends Conector{
 		return usuarios;
 	}
 	
+	public ArrayList<Usuario> buscar(String query){
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select * from usuarios where codigo like ? or nombre_apellido like ? or dni like ?");
+			pst.setString(1, "%" + query + "%");
+			pst.setString(2, "%" + query + "%");
+			pst.setString(3, "%" + query + "%");
+			
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()){
+				Usuario usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNombreApellido(rs.getString("nombre_apellido"));
+				usuario.setDni(rs.getString("dni"));
+				usuario.setCodigo(rs.getString("codigo"));
+				
+				usuarios.add(usuario);
+			}
+			return usuarios;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuarios;
+	}
+	
 
 	public boolean existCodigo(String codigo) {
 		PreparedStatement pst;
