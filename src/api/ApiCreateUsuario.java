@@ -67,7 +67,6 @@ public class ApiCreateUsuario extends HttpServlet {
 		}
 		
 		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
-		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 	}
 
