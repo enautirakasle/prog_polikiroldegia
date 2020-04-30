@@ -57,17 +57,26 @@ public class ApiCreateUsuario extends HttpServlet {
 		usuario.setDni(jsonObject.getString("dni"));
 		
 		ModeloUsuario mUsuario = new ModeloUsuario();
-		mUsuario.insert(usuario);
+		
+		if(usuario.getCodigo().length()==4 && usuario.getDni().length()==9){//exist falta da
+			//balidazioa ok
+			mUsuario.insert(usuario);
 			
-		try {
-			mUsuario.getConexion().close();
-		} catch (SQLException e) {
-			System.out.println("Errorea conexioa ixtean");
-			e.printStackTrace();
+			try {
+				mUsuario.getConexion().close();
+			} catch (SQLException e) {
+				System.out.println("Errorea conexioa ixtean");
+				e.printStackTrace();
+			}
+			
+			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
+			response.setCharacterEncoding("UTF-8");
+			
+		}else {//balidazioa NOK
+//			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Balidatzean errorea");
 		}
 		
-		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
-		response.setCharacterEncoding("UTF-8");
 	}
 
 }
