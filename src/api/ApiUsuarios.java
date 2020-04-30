@@ -1,6 +1,7 @@
 package api;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -43,8 +44,8 @@ public class ApiUsuarios extends HttpServlet {
 		
 		String jsonString = JSONStringer.valueToString(usuarios);
 		
-//	    PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
-		PrintWriter out = response.getWriter();
+	    PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
+//		PrintWriter out = response.getWriter();
 		out.print(jsonString);
 		out.flush();
 	}
