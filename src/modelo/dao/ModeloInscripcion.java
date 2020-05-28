@@ -12,6 +12,11 @@ import modelo.bean.Usuario;
 
 public class ModeloInscripcion extends Conector{
 	
+	public ArrayList<Inscripcion> selectAll(){
+		//TODO egiin gabe
+		return null;
+	}
+	
 	public void inscribir(Usuario usuario, Actividad actividad) {
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("INSERT INTO inscripciones(id_usuario, id_actividad) VALUES (?, ?)");
@@ -61,7 +66,36 @@ public class ModeloInscripcion extends Conector{
 		
 	}
 
-
+	public ArrayList<Inscripcion> getInscripcionesDeActividad(int idActividad){
+		ArrayList<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
+		
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select usuarios.*, inscripciones.*"
+					+ "from inscripciones join usuarios on inscripciones.id_usuario= usuarios.id "
+					+ "where inscripciones.id_actividad = ?");
+			pst.setInt(1, idActividad);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()){
+				Usuario usuario = new Usuario();
+				usuario.setId(rs.getInt("usuarios.id"));
+				usuario.setNombreApellido(rs.getString("nombre_apellido"));
+				usuario.setDni(rs.getString("dni"));
+				usuario.setCodigo(rs.getString("codigo"));
+				
+				Inscripcion inscripcion = new Inscripcion();
+				inscripcion.setId(rs.getInt("inscripciones.id"));
+				inscripcion.setUsuario(usuario);
+				
+				inscripciones.add(inscripcion);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return inscripciones;
+	}
+	
 	public ArrayList<Usuario> getUsuariosInscritos(int idActividad) {
 		
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
