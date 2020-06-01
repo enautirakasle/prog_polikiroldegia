@@ -63,12 +63,14 @@ public class Actividad {
 	public void setIscripciones(ArrayList<Inscripcion> iscripciones) {
 		this.iscripciones = iscripciones;
 	}
-	
 	@Override
 	public String toString() {
 		return "Actividad [id=" + id + ", nombre=" + nombre + ", fecha_inicio=" + fecha_inicio + ", dias=" + dias
-				+ ", horas=" + horas + ", maxParticipantes=" + maxParticipantes + ", precio=" + precio + "]";
+				+ ", horas=" + horas + ", maxParticipantes=" + maxParticipantes + ", precio=" + precio
+				+ ", iscripciones=" + iscripciones + "]";
 	}
+	
+	
 	
 
 	
