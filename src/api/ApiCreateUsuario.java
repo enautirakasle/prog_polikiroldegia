@@ -71,6 +71,7 @@ public class ApiCreateUsuario extends HttpServlet {
 			
 			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
 			response.setCharacterEncoding("UTF-8");
+			response.setStatus(HttpServletResponse.SC_CREATED);
 			
 		}else {//balidazioa NOK
 //			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
