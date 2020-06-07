@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import modelo.Conector;
 import modelo.bean.Actividad;
@@ -37,6 +38,87 @@ public class ModeloActividad extends Conector {
 		return actividades;
 	}
 	
+	public ArrayList<Actividad> selectAllMasCarosQue(double precio){
+		ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select * from actividades where precio > ?");
+			pst.setDouble(1, precio);
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Actividad actividad = new Actividad();
+				actividad.setId(rs.getInt("id"));
+				actividad.setNombre(rs.getString("nombre"));
+				actividad.setDias(rs.getString("dias_semana"));
+				actividad.setFecha_inicio(rs.getDate("fecha_inicio"));
+				actividad.setHoras(rs.getInt("horas"));
+				actividad.setMaxParticipantes(rs.getInt("max_participantes"));
+				actividad.setPrecio(rs.getDouble("precio"));
+
+				actividades.add(actividad);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return actividades;
+		
+	}
+	
+	public int numActividadesMasCarosQue(double precio) {
+		int num = 0;
+		
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select * from actividades where precio > ?");
+			pst.setDouble(1, precio);
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				num++;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return num;
+	}
+	
+	
+	public int numActividadesMasCarosQue2(double precio) {
+		return this.selectAllMasCarosQue(precio).size();
+	}
+	
+	
+	public ArrayList<Actividad> selectAllMasCarosQue2(double precio){
+		ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select * from actividades");
+			pst.setDouble(1, precio);
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				if(rs.getDouble("precio") > precio) {
+					Actividad actividad = new Actividad();
+					actividad.setId(rs.getInt("id"));
+					actividad.setNombre(rs.getString("nombre"));
+					actividad.setDias(rs.getString("dias_semana"));
+					actividad.setFecha_inicio(rs.getDate("fecha_inicio"));
+					actividad.setHoras(rs.getInt("horas"));
+					actividad.setMaxParticipantes(rs.getInt("max_participantes"));
+					actividad.setPrecio(rs.getDouble("precio"));
+	
+					actividades.add(actividad);
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return actividades;
+	}
+	
+	
+	
 	public ArrayList<Actividad> selectAllConInscripciones() {
 		ArrayList<Actividad> actividades = new ArrayList<Actividad>();
 		try {
@@ -54,8 +136,75 @@ public class ModeloActividad extends Conector {
 				actividad.setPrecio(rs.getDouble("precio"));
 				
 				//consegir los usuarios inscritos con el id de actividad
-				//anadirlos al arrayList de inscripciones
-				//anadirlos a la actividad
+				PreparedStatement pst2 = super.conexion.prepareStatement("select inscripciones.*, usuarios.* from inscripciones join usuarios on inscripciones.id_usuario= usuarios.id where id_actividad=?");
+				pst2.setInt(1, actividad.getId());
+				ResultSet rs2 = pst2.executeQuery();
+				
+				ArrayList<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
+				
+				//crear inscripciones de la actividad con usuario rellenado
+				while(rs2.next()) {
+					Inscripcion inscripcion = new Inscripcion();
+					inscripcion.setId(rs2.getInt("inscripciones.id"));
+					
+					Usuario usuario = new Usuario();
+					usuario.setId(rs2.getInt("usuarios.id"));
+					usuario.setNombreApellido(rs2.getString("nombre_apellido"));
+					usuario.setDni(rs2.getString("dni"));
+					usuario.setCodigo(rs2.getString("codigo"));
+					
+					inscripcion.setUsuario(usuario);
+					
+					inscripciones.add(inscripcion);
+					
+				}
+				actividad.setIscripciones(inscripciones);
+
+				actividades.add(actividad);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return actividades;
+	}
+	
+	
+	public ArrayList<Actividad> selectAllConInscripciones2() {
+		ModeloInscripcion mInscripcion = new ModeloInscripcion();
+		
+		ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("select * from actividades");
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Actividad actividad = new Actividad();
+				actividad.setId(rs.getInt("id"));
+				actividad.setNombre(rs.getString("nombre"));
+				actividad.setDias(rs.getString("dias_semana"));
+				actividad.setFecha_inicio(rs.getDate("fecha_inicio"));
+				actividad.setHoras(rs.getInt("horas"));
+				actividad.setMaxParticipantes(rs.getInt("max_participantes"));
+				actividad.setPrecio(rs.getDouble("precio"));
+				
+				//-------------------
+				ArrayList<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
+				ArrayList<Usuario> usuariosInscritos = mInscripcion.getUsuariosInscritos(actividad.getId());
+				
+				Iterator<Usuario> i = usuariosInscritos.iterator();
+				while(i.hasNext()) {
+					Usuario usuario = i.next();
+					
+					Inscripcion inscripcion = new Inscripcion();
+					inscripcion.setUsuario(usuario);
+					
+					inscripciones.add(inscripcion);
+					
+				}
+				
+				//------------------
+				actividad.setIscripciones(inscripciones);
 
 				actividades.add(actividad);
 			}
@@ -212,6 +361,15 @@ public class ModeloActividad extends Conector {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public double sumaDePrecios() {
+//		select sum(precio) from actividades
+//		
+//		ArrayList<Actividad> actividades = selectAll();
+		return 0;
+		
+		
 	}
 
 }
